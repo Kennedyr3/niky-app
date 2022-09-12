@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import App from '../../screens/homeScreen';
+import Home from '../../screens/homeScreen';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -44,8 +44,8 @@ export default function ResponsiveDrawer(props) {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
-
         </Drawer>
+
         <Drawer
           variant="permanent"
           sx={{
@@ -54,15 +54,13 @@ export default function ResponsiveDrawer(props) {
           }}
           open
         >
-
         </Drawer>
       </Box>
 
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 0, width: { sm: `calc(100% - ${drawerWidth}px)` }, }}
+        sx={{ flexGrow: 1, p: 0, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
-
         <Navbar style={{ paddingBottom: 180, backgroundColor: '#162542' }} >
           <Form
             style={{
@@ -95,7 +93,7 @@ export default function ResponsiveDrawer(props) {
           </Form>
         </Navbar>
 
-        <App />
+        <Home />
       </Box>
     </Box>
   );

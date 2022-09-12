@@ -7,12 +7,30 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Button from '@mui/material/Button';
 
 import { BsFillTrashFill, BsCheck } from "react-icons/bs";
 
-import Button from '@mui/material/Button';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [dataSever, setData] = useState([])
+
+  useEffect(() => {
+    async function getUser() {
+      try {
+        fetch("https://fake-saver.herokuapp.com/items")
+          .then(response => response.json())
+          .then(result => setData(result))
+          .catch(error => console.log('error', error));
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getUser()
+  }, [])
+
   const data = [
     {
       "title": "Alimentação",
@@ -181,12 +199,12 @@ function App() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((item) => (
-                      <tr>
+                    {dataSever.map((item, index) => (
+                      <tr key={index}>
                         <td>{item.title}</td>
                         <td>{item.defaultValue}</td>
-                        <td>{item.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</td>
-                        <td>{item.total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</td>
+                        <td>{item.valor ? item?.valor?.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) : null}</td>
+                        <td>{item.total ? item?.total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) : null}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -203,19 +221,17 @@ function App() {
                     textAlign: 'left',
                     color: '#697387',
                     fontWeight: 'bold'
-                  }}
-                >Resumo</h3>
+                  }}>Resumo</h3>
                 <h6
                   style={{
                     textAlign: 'left',
                     color: '#475F8C',
                     fontWeight: 'bold',
                     marginTop: 20
-                  }}
-                >Gestores de área</h6>
+                  }}>Gestores de área</h6>
 
                 <ListGroup as="ol" >
-                  {data.map((item, index) => (
+                  {dataSever.map((item, index) => (
                     <ListGroup.Item
                       as="li"
                       className="d-flex justify-content-between align-items-center"

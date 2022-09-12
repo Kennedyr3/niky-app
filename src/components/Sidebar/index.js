@@ -66,7 +66,7 @@ export default function ResponsiveDrawer(props) {
         <Navbar style={{ paddingBottom: 180, backgroundColor: '#162542' }} >
           <Form
             style={{
-              width: 300,
+              width: 400,
               marginLeft: 40,
               marginTop: 10
             }}

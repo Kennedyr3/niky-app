@@ -50,7 +50,7 @@ const BootstrapButton = styled(Button)({
   },
 });
 
-function App() {
+function Home() {
   const [dataSever, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [show, setShow] = useState(false);
@@ -349,4 +349,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
